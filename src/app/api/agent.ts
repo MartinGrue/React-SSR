@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { IUser } from "../reducers";
+import { IUser } from "../models/IUser";
 
 axios.defaults.baseURL = "http://react-ssr-api.herokuapp.com";
 

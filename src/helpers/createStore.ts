@@ -1,8 +1,7 @@
+import { configureStore } from "../store/configure/configureStore";
+import { usersInitialState } from "../store/reducers/usersReducer";
 
-import { initialState } from "../client/reducers/usersReducer";
-import { configureStore } from "../client/reducers/configureStore";
-// import reducers from "../client/reducers/index";
 export default () => {
-    const store = configureStore(initialState);
+    const store = configureStore(usersInitialState);
     return store;
 };

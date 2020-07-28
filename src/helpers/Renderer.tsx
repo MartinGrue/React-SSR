@@ -4,10 +4,12 @@ import { StaticRouter } from "react-router-dom";
 import { Request, Response } from "express";
 import { renderRoutes } from "react-router-config";
 import Routes from "../components/Routes";
-import { Store, AnyAction } from "redux";
-import { MyState } from "../client/reducers";
+import { Store } from "redux";
 import { Provider } from "react-redux";
-export default (req: Request, store: Store<MyState, AnyAction>) => {
+import { usersState } from "../store/state/IState";
+import { usersActions } from "../store/actions/IActions";
+
+export default (req: Request, store: Store<usersState, usersActions>) => {
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter context={{}} location={req.url}>

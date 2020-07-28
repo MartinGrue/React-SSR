@@ -1,8 +1,8 @@
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { MyState } from "../client/reducers";
-import {fetchUsers} from "./../client/actions/actions"
-const mapState = (state: MyState) => ({
+import { usersState } from "../store/state/IState";
+import {fetchUsers} from "../store/actions/userthunks"
+const mapState = (state: usersState) => ({
   users: state.users,
 });
 
