@@ -16,7 +16,7 @@ const config = {
   // that is generated
 
   output: {
-    filename: "bundle.js",
+    filename: "clientBundle.js",
     path: path.resolve(__dirname, "public"),
   },
 };

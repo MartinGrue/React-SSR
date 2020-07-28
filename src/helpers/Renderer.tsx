@@ -22,7 +22,7 @@ export default (req: Request, store: Store<usersState, usersActions>) => {
           <head></head>
           <body>
               <div id="root">${content}</div>
-              <script src="bundle.js"></script>
+              <script src="clientBundle.js"></script>
           </body>
       </html>
     `;

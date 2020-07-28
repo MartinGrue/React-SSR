@@ -20,7 +20,7 @@ type Props = PropsFromRedux & {
 const Home: React.FC<Props> = ({ users, fetchUsers }) => {
   return (
     <div>
-      <p>Hi from home</p>
+      <p>Hi from Home</p>
       {/* <ul>
         {users.map((v, i) => {
           <li>{v.id}</li>;
