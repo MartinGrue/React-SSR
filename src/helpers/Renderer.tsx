@@ -9,6 +9,9 @@ import { Provider } from "react-redux";
 import { usersState } from "../store/state/IState";
 import { usersActions } from "../store/actions/IActions";
 
+export const rendererComponent = () => {
+  
+}
 export default (req: Request, store: Store<usersState, usersActions>) => {
   const content = renderToString(
     <Provider store={store}>
