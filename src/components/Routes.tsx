@@ -1,6 +1,7 @@
 import Home from "./Home";
 import { RouteConfig } from "react-router-config";
 import React from "react";
+import { Test } from "./Test";
 const Routes: RouteConfig[] = [
   {
     component: Home,
