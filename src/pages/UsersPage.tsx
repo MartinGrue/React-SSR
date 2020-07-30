@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
-import { connect, ConnectedProps } from "react-redux";
 import { usersState } from "../store/state/IState";
 import {
-  fetchUsers,
   MyThunkDispatch,
+  fetchUsers,
   fetchUsersSlow,
-  MyThunkResult,
 } from "../store/actions/userthunks";
-import { withRouter } from "react-router-dom";
-import { Store, bindActionCreators, Dispatch, AnyAction } from "redux";
-import { usersActions } from "../store/actions/IActions";
+import { connect } from "react-redux";
+import { ConnectedProps } from "react-redux";
+import { useEffect } from "react";
 import { appStore } from "../store/configure/configureStore";
+import React from "react";
+
 const mapState = (state: usersState) => {
-  console.log(`From the stateMapper: ${state.users.map((v) => v.name)}`);
   return {
     users: state.users,
   };
@@ -26,35 +24,29 @@ const connector = connect(mapState, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const Home: React.FC<PropsFromRedux> = ({ fetchUsers, users }) => {
+interface UsersPageProps extends PropsFromRedux {}
+
+const HomePage: React.FC<UsersPageProps> = ({ fetchUsers, users }) => {
   useEffect(() => {
     fetchUsers();
-    console.log(users);
   }, []);
   if (users.length === 0) {
-    return <p>Hi from Home</p>;
+    return <p>Hi from UsersPage</p>;
   } else {
-    console.log(`from the component: ${users[0].name}`);
-
     return (
       <div>
-        <p>Hi from Home</p>
+        <p>Hi from UsersPage</p>
         {users.map((v, i) => {
           return <p key={v.id}>{v.name}</p>;
         })}
         <p>{users[0].name}</p>
-        {/* <button onClick={fetchUsers}></button> */}
       </div>
     );
   }
 };
-export const loadData = () => {
-  console.log("im loading data on the server");
-};
-
 export default {
-  component: connector(Home),
+  component: connector(HomePage),
   loadData: (store: appStore) => {
-    return store.dispatch(fetchUsersSlow());
+    return store.dispatch(fetchUsers());
   },
 };

@@ -1,33 +1,32 @@
-import Home, { loadData } from "./Home";
 import { RouteConfig } from "react-router-config";
-import React from "react";
-import { Test } from "./Test";
-import Renderer from "../helpers/Renderer";
 import { appStore } from "../store/configure/configureStore";
+import UsersPage from "../pages/UsersPage";
+import HomePage from "../pages/HomePage";
+
 const Routes: RouteConfig[] = [
   {
-    component: Home.component,
-    path: "/home",
+    component: UsersPage.component,
+    path: "/users",
     routes: [
       {
-        component: Home.component,
+        component: UsersPage.component,
         loadData: (store: appStore) => {
-          console.log("Im loading home data");
-          return Home.loadData(store);
+          return UsersPage.loadData(store);
         },
-        path: "/home",
+        path: "/users",
       },
     ],
   },
   {
-    component: Test,
-    path: "/test",
+    component: HomePage,
+    path: "/home",
     routes: [
       {
-        component: Test,
+        component: HomePage,
         loadData: () => {
           console.log("Im loading HI data");
         },
+        path: "/home",
       },
     ],
   },

@@ -12,7 +12,7 @@ export const configureStore = (usersInitialState: usersState): appStore => {
   const appstore = createStore(
     usersReducer,
     usersInitialState,
-    applyMiddleware(thunk as ThunkMiddleware<usersState, usersActions>)
+    applyMiddleware(thunk)
   );
   return appstore;
 };
