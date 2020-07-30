@@ -3,6 +3,7 @@ import { RouteConfig } from "react-router-config";
 import React from "react";
 import { Test } from "./Test";
 import Renderer from "../helpers/Renderer";
+import { appStore } from "../store/configure/configureStore";
 const Routes: RouteConfig[] = [
   {
     component: Home.component,
@@ -10,9 +11,9 @@ const Routes: RouteConfig[] = [
     routes: [
       {
         component: Home.component,
-        loadData: (store:any) => {
+        loadData: (store: appStore) => {
           console.log("Im loading home data");
-          return Home.loadData(store)
+          return Home.loadData(store);
         },
         path: "/home",
       },

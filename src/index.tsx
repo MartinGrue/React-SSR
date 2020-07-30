@@ -1,8 +1,11 @@
 import express from "express";
 import Renderer from "./helpers/Renderer";
-import createStore from "./helpers/createStore";
 import { matchRoutes } from "react-router-config";
 import Routes from "./components/Routes";
+import {
+  configureStore,
+  createAppStore,
+} from "./store/configure/configureStore";
 const app = express();
 
 // const loadData = (req: any) => {
@@ -18,7 +21,7 @@ const app = express();
 
 app.use(express.static("public"));
 app.get("*", (req, res) => {
-  const store = createStore();
+  const store = createAppStore();
   const preloaded = matchRoutes(Routes, req.url);
 
   const promises = preloaded.map(({ route, match }) => {
@@ -30,7 +33,6 @@ app.get("*", (req, res) => {
     // console.log(data);
     console.log("load data done");
     res.send(Renderer(req, store));
-
   });
 });
 app.listen(3000, () => {

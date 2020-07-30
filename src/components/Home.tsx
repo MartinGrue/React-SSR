@@ -10,6 +10,7 @@ import {
 import { withRouter } from "react-router-dom";
 import { Store, bindActionCreators, Dispatch, AnyAction } from "redux";
 import { usersActions } from "../store/actions/IActions";
+import { appStore } from "../store/configure/configureStore";
 const mapState = (state: usersState) => {
   console.log(`From the stateMapper: ${state.users.map((v) => v.name)}`);
   return {
@@ -24,10 +25,6 @@ const mapDispatchToProps = (dispatch: MyThunkDispatch) => ({
 const connector = connect(mapState, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-
-type Props = PropsFromRedux & {
-  backgroundColor: string;
-};
 
 const Home: React.FC<PropsFromRedux> = ({ fetchUsers, users }) => {
   useEffect(() => {
@@ -57,24 +54,7 @@ export const loadData = () => {
 
 export default {
   component: connector(Home),
-  loadData: (store: Store<usersState, usersActions>) => {
-    interface ActionDispatchs {
-      fetchUsers: MyThunkDispatch;
-      fetchUsersSlow: MyThunkDispatch;
-    }
-    const actions: ActionDispatchs = bindActionCreators(
-      {
-        fetchUsers,
-        fetchUsersSlow,
-      },
-      store.dispatch as Dispatch<AnyAction>
-    );
-
-    return actions.fetchUsersSlow(fetchUsersSlow());
-    // console.log("this is a store")
-    // console.log(store)
+  loadData: (store: appStore) => {
+    return store.dispatch(fetchUsersSlow());
   },
-  // setTimeout(() => {
-  //   console.log("Im loading Home data");
-  // }, 3000    )
 };

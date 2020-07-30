@@ -8,11 +8,10 @@ import { Store } from "redux";
 import { Provider } from "react-redux";
 import { usersState } from "../store/state/IState";
 import { usersActions } from "../store/actions/IActions";
+import { appStore } from "../store/configure/configureStore";
 
-export const rendererComponent = () => {
-  
-}
-export default (req: Request, store: Store<usersState, usersActions>) => {
+export const rendererComponent = () => {};
+export default (req: Request, store: appStore) => {
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter context={{}} location={req.url}>
