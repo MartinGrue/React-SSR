@@ -4,12 +4,9 @@ import { StaticRouter } from "react-router-dom";
 import { Request, Response } from "express";
 import { renderRoutes } from "react-router-config";
 import Routes from "../components/Routes";
-import { Store } from "redux";
 import { Provider } from "react-redux";
-import { usersState } from "../store/state/IState";
-import { usersActions } from "../store/actions/IActions";
 import { appStore } from "../store/configure/configureStore";
-
+import serialize from "serialize-javascript";
 export const rendererComponent = () => {};
 export default (req: Request, store: appStore) => {
   const content = renderToString(
@@ -24,6 +21,9 @@ export default (req: Request, store: appStore) => {
           <head></head>
           <body>
               <div id="root">${content}</div>
+              <script>window.INITIAL_STATE = ${serialize(
+                store.getState()
+              )}</script>
               <script src="clientBundle.js"></script>
           </body>
       </html>
