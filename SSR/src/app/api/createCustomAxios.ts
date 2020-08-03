@@ -5,6 +5,7 @@ export interface Agent {
   axiosInstance: AxiosInstance;
   User: {
     fetchUser: () => Promise<IUser[]>;
+    fetchCurrentUser: () => Promise<any>;
   };
 }
 export default (axiosInstance: AxiosInstance): Agent => {
@@ -36,6 +37,7 @@ export default (axiosInstance: AxiosInstance): Agent => {
   };
   const User = {
     fetchUser: (): Promise<IUser[]> => requests.get(`/users`),
+    fetchCurrentUser: (): Promise<any> => requests.get("/current_user"),
   };
   return { axiosInstance, User };
 };

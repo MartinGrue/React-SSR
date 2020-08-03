@@ -36,3 +36,18 @@ export const fetchUsersSlow = (): MyThunkResult<Promise<void>> => async (
     console.log(error);
   }
 };
+
+export const fetchCurrentUser = (): MyThunkResult<Promise<void>> => async (
+  dispatch: Dispatch<usersActions>,
+  getState: () => usersState,
+  agent: Agent
+) => {
+  try {
+    // const users = await agent.User.fetchUser();
+    const isloggedIn = await agent.User.fetchCurrentUser();
+    console.log(`isloggedin: ${isloggedIn}`);
+    dispatch({ type: "fetch_current_user", payload: false });
+  } catch (error) {
+    console.log(error);
+  }
+};

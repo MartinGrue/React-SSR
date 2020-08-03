@@ -6,6 +6,7 @@ import App from "./App";
 const Routes: RouteConfig[] = [
   {
     component: App.component,
+    loadData: App.loadData,
     routes: [
       {
         component: UsersPage.component,

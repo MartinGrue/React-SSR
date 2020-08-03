@@ -13,7 +13,7 @@ declare global {
     INITIAL_STATE: usersState;
   }
 }
-const axiosInstance = axios.create({ baseURL: "http://localhost:3000/api" });
+const axiosInstance = axios.create({ baseURL: "/api" });
 const agent = createCustomAxios(axiosInstance);
 const store = configureStore(window.INITIAL_STATE, agent);
 console.log(window.INITIAL_STATE);
