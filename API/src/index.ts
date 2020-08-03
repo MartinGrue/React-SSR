@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes";
 import { User } from "./models/User";
 import { seedData } from "./seed";
+
 const app = express();
-const hostname = "127.0.0.1";
 const port = 3000;
 const mongoConnectionString = "'mongodb://localhost:27017'";
 mongoose.connect(mongoConnectionString, {
