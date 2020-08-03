@@ -7,7 +7,7 @@ import { Agent } from "../../app/api/createCustomAxios";
 import { Request } from "express";
 
 export type appStore = Store<usersState, usersActions> & {
-  dispatch: ThunkDispatch<usersState, undefined, usersActions>;
+  dispatch: ThunkDispatch<usersState, Agent, usersActions>;
 };
 
 export const configureStore = (

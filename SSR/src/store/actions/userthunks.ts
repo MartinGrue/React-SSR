@@ -5,11 +5,7 @@ import { usersState } from "../state/IState";
 import { Agent } from "../../app/api/createCustomAxios";
 
 export type MyThunkResult<R> = ThunkAction<R, usersState, Agent, usersActions>;
-export type MyThunkDispatch = ThunkDispatch<
-  usersState,
-  undefined,
-  usersActions
->;
+export type MyThunkDispatch = ThunkDispatch<usersState, Agent, usersActions>;
 
 export const fetchUsers = (): MyThunkResult<Promise<void>> => async (
   dispatch: Dispatch<usersActions>,
