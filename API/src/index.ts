@@ -36,7 +36,4 @@ app.listen(port, async () => {
   await User.find({}, (err, users) => {
     users.length === 0 ? seedData() : null;
   });
-
-  const user2 = await User.findOne({ name: "tia" });
-  console.log("this is user2 password: ", user2);
 });

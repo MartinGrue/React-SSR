@@ -28,7 +28,6 @@ export interface IUserModel extends Model<UserDocument> {
 }
 userSchema.pre<UserDocument>("save", async function save(next) {
   const user = this;
-  console.log("in pre save", user.password);
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
