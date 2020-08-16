@@ -1,13 +1,15 @@
-import mongoose, { Schema, Document, Model, model } from "mongoose";
-import { User } from "./models/User";
+import { User, IUser } from "./models/User";
 
 export const seedData = () => {
-  const users = [
-    { name: "tia" },
-    { name: "nemo" },
-    { name: "tom" },
-    { name: "jerry" },
+  const users: IUser[] = [
+    { name: "tia", password: "asdf" },
+    { name: "nemo", password: "asdf" },
+    { name: "tom", password: "asdf" },
+    { name: "jerry", password: "asdf" },
   ];
 
-  User.insertMany(users);
+  users.map(async (user) => {
+    const userdoc = User.build(user);
+    await userdoc.save();
+  });
 };
