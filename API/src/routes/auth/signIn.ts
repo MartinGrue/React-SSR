@@ -26,7 +26,7 @@ router.post(
         "Token_KEY_GOES_HERE"
       );
       req.session!["jwt"] = token;
-      res.status(201).send(user);
+      res.status(200).send(user);
     } catch (error) {
       return res.status(422).send(error.massage);
     }
