@@ -16,6 +16,17 @@ const reducer: Reducer<usersState, usersActions> = (
       return { ...state, users: action.payload };
     case "fetch_current_user":
       return { ...state, currentUser: action.payload };
+    case "sign_in":
+      return {
+        ...state,
+        currentUser: {
+          currentUser: {
+            userId: action.payload.id,
+            name: action.payload.name,
+            iat: 13123,
+          },
+        },
+      };
     default:
       return state;
   }

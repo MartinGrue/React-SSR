@@ -8,7 +8,7 @@ export interface IUserRequest {
 }
 export interface ICurrentUser {
   currentUser: {
-    userId: number;
+    userId: string;
     name: string;
     iat: number;
   } | null;
