@@ -16,7 +16,7 @@ declare global {
 const axiosInstance = axios.create({ baseURL: "/api" });
 const agent = createCustomAxios(axiosInstance);
 const store = configureStore(window.INITIAL_STATE, agent);
-console.log(window.INITIAL_STATE);
+console.log("store init state from server: ",window.INITIAL_STATE);
 ReactDOM.hydrate(
   <Provider store={store}>
     <BrowserRouter>

@@ -1,6 +1,6 @@
-import { IUser } from "../../app/models/IUser";
+import { IUser, ICurrentUser } from "../../app/models/IUser";
 
 export type usersState = {
   users: IUser[];
-  isLoggedIn: boolean;
+  currentUser: ICurrentUser
 };

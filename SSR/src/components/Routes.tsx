@@ -7,6 +7,7 @@ const Routes: RouteConfig[] = [
   {
     component: App.component,
     loadData: App.loadData,
+    exact:true,
     routes: [
       {
         component: UsersPage.component,
@@ -15,7 +16,7 @@ const Routes: RouteConfig[] = [
           {
             component: UsersPage.component,
             loadData: (store: appStore) => {
-              return UsersPage.loadData(store);
+              // return UsersPage.loadData(store);
             },
             path: "/users",
           },

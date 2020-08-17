@@ -1,11 +1,12 @@
 import { AxiosInstance, AxiosResponse } from "axios";
-import { IUser } from "../models/IUser";
+import { IUser, ICurrentUser, IUserRequest } from "../models/IUser";
 
 export interface Agent {
   axiosInstance: AxiosInstance;
   User: {
     fetchUser: () => Promise<IUser[]>;
-    fetchCurrentUser: () => Promise<any>;
+    fetchCurrentUser: () => Promise<ICurrentUser>;
+    signIn: (user: IUserRequest) => Promise<IUser>;
   };
 }
 export default (axiosInstance: AxiosInstance): Agent => {
@@ -37,7 +38,10 @@ export default (axiosInstance: AxiosInstance): Agent => {
   };
   const User = {
     fetchUser: (): Promise<IUser[]> => requests.get(`/users`),
-    fetchCurrentUser: (): Promise<any> => requests.get("/current_user"),
+    signIn: (user: IUserRequest): Promise<IUser> =>
+      requests.post(`/auth/signin`, user),
+    fetchCurrentUser: (): Promise<ICurrentUser> =>
+      requests.get("/auth/currentuser"),
   };
   return { axiosInstance, User };
 };
