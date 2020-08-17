@@ -13,7 +13,16 @@ const userSchema: Schema<UserDocument> = new mongoose.Schema(
       required: true,
     },
   },
-  { collection: "users" }
+  {
+    collection: "users",
+    toJSON: {
+      transform(doc: UserDocument, ret) {
+        (ret.id = ret._id), delete ret._id;
+        delete ret.password;
+        delete ret.__v;
+      },
+    },
+  }
 );
 export interface IUser {
   name: string;

@@ -22,7 +22,7 @@ router.post(
         return res.status(422).send("Name or Password invalid");
       }
       const token = jsonwebtoken.sign(
-        { userId: user._id },
+        { userId: user.id, name },
         "Token_KEY_GOES_HERE"
       );
       req.session!["jwt"] = token;
