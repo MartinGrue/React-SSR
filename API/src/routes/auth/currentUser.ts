@@ -2,7 +2,8 @@ import express, { Response, Request } from "express";
 const router = express.Router();
 import jwt from "jsonwebtoken";
 
-router.get("/api/auth/currentuser", (req, res: Response<any>) => {
+router.get("/auth/currentuser", (req, res: Response<any>) => {
+  console.log("in currentUser")
   if (!req.session?.jwt) {
     return res.send({ currentuser: null });
   }

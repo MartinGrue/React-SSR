@@ -5,8 +5,10 @@ import jsonwebtoken from "jsonwebtoken";
 const router = express.Router();
 
 router.post(
-  "/api/auth/signin",
+  "/auth/signin",
   async (req: Request<{}, {}, IUser>, res: Response<any>) => {
+    console.log("in signIn")
+
     try {
       const { name, password } = req.body;
       if (!name || !password) {
