@@ -6,16 +6,16 @@ import { configureStore } from "./store/configure/configureStore";
 import proxy from "express-http-proxy";
 import axios from "axios";
 import createCustomAxios from "./app/api/createCustomAxios";
+const apiUrl = `http://localhost:4000`;
+// const apiUrl = `https://whispering-cove-81970.herokuapp.com`;
 const app = express();
 
-// app.use("/api", proxy(`http://localhost:4000`));
-app.use("/api", proxy(`https://whispering-cove-81970.herokuapp.com`));
+app.use("/api", proxy(apiUrl));
 app.use(express.static("public"));
 app.get("*", async (req: Request, res) => {
   console.log("starting");
   const axiosInstance = axios.create({
-    baseURL: "https://whispering-cove-81970.herokuapp.com",
-    // baseURL: "http://localhost:4000",
+    baseURL: apiUrl,
     headers: { cookie: req.get("cookie") || "" },
   });
 
@@ -36,5 +36,5 @@ app.get("*", async (req: Request, res) => {
   });
 });
 app.listen(3000, () => {
-  console.log("Listening on prot 3000");
+  console.log("Listening on port 3000");
 });
