@@ -35,17 +35,17 @@ interface UserDocument extends Document, IUser {
 export interface IUserModel extends Model<UserDocument> {
   build(user: IUser): UserDocument;
 }
-userSchema.pre<UserDocument>("save", async function (next) {
+userSchema.pre<UserDocument>("save", async function (this: UserDocument, next: any) {
   const user = this;
   if (!user.isModified("password")) {
-    return next();
+    next();
   }
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-    return next();
+    next();
   } catch (err) {
-    return next(err);
+    next(err);
   }
 });
 userSchema.methods.comparePassword = async function (

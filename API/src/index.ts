@@ -1,6 +1,6 @@
-import express from "express";
+import express, { json } from "express";
 import mongoose from "mongoose";
-import { json } from "body-parser";
+// import { json } from "body-parser";
 import dotenv from "dotenv";
 import { User } from "./models/User";
 import { seedData } from "./seed";
@@ -23,9 +23,7 @@ app.use(usersRouter);
 //   useNewUrlParser: true,
 //   useCreateIndex: true,
 // });
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017"
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017");
 mongoose.connection.on("connected", () => {
   console.log("Connected to mongo instance");
 });
@@ -38,9 +36,7 @@ mongoose.connection.on("error", (error: any) => {
 //   console.log("Hello", req.url)
 //   res.send("Hello World!");
 // });
-app.listen(port, async () => {
+app.listen(port, () => {
   console.log("Im listening on port:", port);
-  await User.find({}, (err, users) => {
-    users.length === 0 ? seedData() : null;
-  });
+  User.count((err, count) => (count === 0 ? seedData() : null));
 });

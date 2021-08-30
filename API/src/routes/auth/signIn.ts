@@ -1,4 +1,4 @@
-import express, { Response, Request } from "express";
+import express, { Response, Request, NextFunction } from "express";
 import { IUser, User } from "../../models/User";
 import jsonwebtoken from "jsonwebtoken";
 
@@ -6,8 +6,12 @@ const router = express.Router();
 
 router.post(
   "/auth/signin",
-  async (req: Request<{}, {}, IUser>, res: Response<any>) => {
-    console.log("in signIn")
+  async (
+    req: Request<{}, {}, IUser>,
+    res: Response<any>,
+    next: NextFunction
+  ) => {
+    console.log("in signIn");
 
     try {
       const { name, password } = req.body;
@@ -30,7 +34,7 @@ router.post(
       req.session!["jwt"] = token;
       res.status(200).send(user);
     } catch (error) {
-      return res.status(422).send(error.massage);
+      next(error);
     }
   }
 );
